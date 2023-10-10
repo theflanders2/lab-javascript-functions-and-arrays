@@ -312,7 +312,27 @@ const matrix = [
   ],
 ];
 
-function greatestProduct() {}
+function greatestProduct(matrix) {
+  let maxProduct = 0;
+  let productHorz = 0;
+  let productVert = 0;
+  
+  for (let i = 0; i < matrix.length; i++) {
+    for (let j = 0; j < matrix[i].length - 3; j++) {
+      productHorz = matrix[i][j] * matrix[i][j + 1] * matrix[i][j + 2] * matrix[i][j + 3];
+    }
+    for (let k = 0; k < matrix[i].length; k++) {
+      productVert = matrix[i][k] * matrix[i + 1][k] * matrix[i + 2][k] * matrix[i + 3][k];
+    }
+    if (productHorz > maxProduct && productHorz > productVert) {
+      maxProduct = productHorz;
+    }
+    else if (productVert > maxProduct && productVert > productHorz) {
+      maxProduct = productVert;
+    }
+  }
+  return maxProduct;
+}
 
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
